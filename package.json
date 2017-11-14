@@ -1,0 +1,19 @@
+{
+  "name": "neteasemusiccli",
+  "version": "1.0.0",
+  "description": "netEaseCloudMusic-cli ,makes you can listen to netEaseCloudMusic width terminal and nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "netEaseCloudMusic",
+    "nodejs",
+    "cli"
+  ],
+  "author": "bobiscool/thunderBall.wu",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.3.0"
+  }
+}
