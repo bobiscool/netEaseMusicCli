@@ -1,7 +1,6 @@
-const express = require('express');
-const router = express();
+const http = require('http')
 
-router.get('/',(req,res)=>{
-   const cookie = req.get('Cookie')?req.get('Cookie'):''; 
-   console.log(req);
+http.get('http://www.baidu.com',function(res){
+    console.log(res)
 });
+
