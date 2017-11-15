@@ -32,19 +32,15 @@ const title = `
 
 
 function genLogo(){
-    let logoText = ``;
-    for(var i=0;i<a.length;i++){
-      console.log(a[i]=='\n');
-      if(a[i] == '@'){
-          logoText += "+chalk.red('@')"
-      } else if(a[i] =='\n'||a[i]==' '){
-        logoText += "'"+a[i]+"'";        
-      }else{
-        logoText += "+chalk.white('"+a[i]+"')" 
-      }
-
-
-    }
+    let logoText = [];
+    logoText[0] = chalk.red(`
+    ..@@@@@@@@@@@@@@@@@@@@@@@@@...          
+    .,@@@@@@@@@@@@@@@@@@@@@@@@@@@^.  
+    `)
+    logoText[1] = chalk.red(`
+    ,@@@@@@@@@@@@@@@@${chalk.white('[..,[')}@@@@@@@@^  
+    `)
+   console.log(logoText[1])
 }
 // console.log(a)
 // console.log(title)
