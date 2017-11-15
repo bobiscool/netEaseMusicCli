@@ -1,5 +1,13 @@
+/*
+ * @Author: Thunderball.Wu 
+ * @Date: 2017-11-15 17:18:13 
+ * @Last Modified by: Thunderball.Wu
+ * @Last Modified time: 2017-11-15 17:18:53
+ * 
+ */
+
 var chalk = require("chalk");
-var a = `
+var logo = `
 ..@@@@@@@@@@@@@@@@@@@@@@@@@....  
 ..@@@@@@@@@@@@@@@@@@@@@@@@@@@.. 
 .@@@@@@@@@@@@@@@@.....@@@@@@@@. 
