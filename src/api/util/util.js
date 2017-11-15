@@ -1,8 +1,8 @@
 /*
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-15 13:22:35 
- * @Last Modified by:   Thunderball.Wu 
- * @Last Modified time: 2017-11-15 13:22:35 
+ * @Last Modified by: Thunderball.Wu
+ * @Last Modified time: 2017-11-15 15:06:45
  */
 
 const Encrypt = require('./crypto.js')
@@ -34,7 +34,8 @@ function randomUserAgent() {
   const num = Math.floor(Math.random() * userAgentList.length)
   return userAgentList[num]
 }
-function createWebAPIRequest(
+
+function requestNetEaseApi(
   host,
   path,
   method,
