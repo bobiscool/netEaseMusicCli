@@ -2,7 +2,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-15 13:22:35 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-15 15:06:45
+ * @Last Modified time: 2017-11-15 15:25:55
  */
 
 const Encrypt = require('./crypto.js')
@@ -35,16 +35,8 @@ function randomUserAgent() {
   return userAgentList[num]
 }
 
-function requestNetEaseApi(
-  host,
-  path,
-  method,
-  data,
-  cookie,
-  callback,
-  errorcallback
-) {
-  let music_req = ''
+function requestNetEaseApi( host,path,method,data,cookie,callback,errorcallback) {
+  let music_res = ''
   const cryptoreq = Encrypt(data)
   const http_client = http.request(
     {
@@ -68,21 +60,22 @@ function requestNetEaseApi(
       })
       res.setEncoding('utf8')
       if (res.statusCode != 200) {
-        createWebAPIRequest(host, path, method, data, cookie, callback)
+        requestNetEaseApi(host, path, method, data, cookie, callback)
         return
       } else {
         res.on('data', function(chunk) {
-          music_req += chunk
+          music_res += chunk
         })
         res.on('end', function() {
-          if (music_req == '') {
-            createWebAPIRequest(host, path, method, data, cookie, callback)
+          if (music_res == '') {
+            requestNetEaseApi(host, path, method, data, cookie, callback)
             return
           }
           if (res.headers['set-cookie']) {
-            callback(music_req, res.headers['set-cookie'])
+            
+            callback(music_res, res.headers['set-cookie'])
           } else {
-            callback(music_req)
+            callback(music_res)
           }
         })
       }
@@ -132,6 +125,6 @@ function createRequest(path, method, data, callback, errorcallback) {
   })
 }
 module.exports = {
-  createWebAPIRequest,
+  requestNetEaseApi,
   createRequest
 }
