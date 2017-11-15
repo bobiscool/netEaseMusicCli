@@ -1,3 +1,10 @@
+/*
+ * @Author: Thunderball.Wu 
+ * @Date: 2017-11-15 13:22:35 
+ * @Last Modified by:   Thunderball.Wu 
+ * @Last Modified time: 2017-11-15 13:22:35 
+ */
+
 const Encrypt = require('./crypto.js')
 const http = require('http')
 const querystring = require('querystring')
