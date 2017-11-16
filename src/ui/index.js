@@ -1,24 +1,16 @@
-
-/*
- * @Author: Thunderball.Wu 
- * @Date: 2017-11-15 17:18:13 
- * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-16 11:21:43
- * 
- */
-
+var blessed = require("blessed");
 var chalk = require("chalk");
-var chalkAnimation = require('chalk-animation');
-const ansi = require('ansi-escape-sequences')
-var logo = `
-..@@@@@@@@@@@@@@@@@@@@@@@@@....  
+var screen = blessed.screen({
+  smartCSR: true
+});
+var logo = `  
 ..@@@@@@@@@@@@@@@@@@@@@@@@@@@.. 
 .@@@@@@@@@@@@@@@@.....@@@@@@@@. 
 @@@@@@@@@@@...... .....@@@@@@@@ 
 @@@@@@@@......@....@@@@@@@@@@@@ 
 @@@@@@@....@@@.........@@@@@@@@ 
 @@@@@@...@@@.............@@@@@@ 
-@@@@@...@@@....@@...@@...=@@@@@ 
+@@@@@...@@@....@@...@@....@@@@@ 
 @@@@@...@@@....@@....@@...@@@@@ 
 @@@@@....@@@.......@@@@...@@@@@ 
 @@@@@@...@@@@@..@@@@@@...@@@@@@ 
@@ -27,75 +19,88 @@ var logo = `
 .@@@@@@@@@@@@......@@@@@@@@@@@@ 
 ...@@@@@@@@@@@@@@@@@@@@@@@@@@.. `;
 
-const title = `
-
- /$$   /$$             /$$     /$$$$$$$$                              
-| $$$ | $$            | $$    | $$_____/                              
-| $$$$| $$  /$$$$$$  /$$$$$$  | $$        /$$$$$$   /$$$$$$$  /$$$$$$ 
-| $$ $$ $$ /$$__  $$|_  $$_/  | $$$$$    |____  $$ /$$_____/ /$$__  $$
-| $$  $$$$| $$$$$$$$  | $$    | $$__/     /$$$$$$$|  $$$$$$ | $$$$$$$$
-| $$\\  $$$| $$_____/  | $$ /$$| $$       /$$__  $$ \\____  $$| $$_____/
-| $$ \\  $$|  $$$$$$$  |  $$$$/| $$$$$$$$|  $$$$$$$ /$$$$$$$/|  $$$$$$$
-|__/  \\__/ \\_______/   \\___/  |________/ \\_______/|_______/  \\_______/
-                                                                      
-`;
-
 function addChalk(text) {
   let temText = "";
   let textNotat = "";
   for (var i in text) {
     if (text[i] != "@") {
-      temText += `${i==0?'':'+'}chalk.white('${text[i]}')`;
+      temText += `${i == 0 ? "" : "+"}chalk.white('${text[i]}')`;
     }
-    if(text[i] == "@"){
-        temText +=`${i==0?'':'+'}'@'`
+    if (text[i] == "@") {
+      temText += `${i == 0 ? "" : "+"}'@'`;
     }
   }
-   temText = 'chalk.red('+temText+');'
+  temText = "chalk.red(" + temText + ")";
   return temText;
 }
 
 function genLogo() {
-  var logoTextArray = logo.split("\n"); 
-logoTextArray.forEach(function(item, index) {
-    console.log(eval(addChalk(item)));
-});
-console.log(title)
+  var logoTextArray = logo.split("\n");
+  var logoTextArrayWrapChalk = [];
+  logoTextArray.forEach(function(item, index) {
+    logoTextArrayWrapChalk.push(addChalk(item));
+  });
+  //   console.log(title)
+  return logoTextArrayWrapChalk.join("+'\\n'+");
 }
 
+// console.log(eval(genLogo()));
 
-genLogo();
+screen.title = "NetEase";
 
-const welcome = chalkAnimation.rainbow('Welcome to NetEaseCloudMusic!'); // Animation starts
-const loading = chalkAnimation.neon('Loading...'); // Animation starts
+var logoBox = blessed.box({
+  top: "center",
+  left: "center",
+  width: 33.5,
+  height: 18,
+  content: eval(genLogo()),
+  tags: true,
+  style: {
+    fg: "red",
+    bg: "black",
 
-// setTimeout(() => {
-//     welcome.stop(); // Animation stops
-//     loading.stop();
-// }, 5000);
-var T = ['\u001B[1F\u001B[G\u001B[2K'+'1211',
-'\u001B[1F\u001B[G\u001B[2K'+'1121',
-'\u001B[1F\u001B[G\u001B[2K'+'1112',
-'\u001B[1F\u001B[G\u001B[2K'+'1121',
-'\u001B[1F\u001B[G\u001B[2K'+'1211',
-'\u001B[1F\u001B[G\u001B[2K'+'2111',
-'\u001B[1F\u001B[G\u001B[2K'+'1211'
-]
+    border: {
+      fg: "#f0f0f0"
+    },
+    hover: {
+      bg: "green"
+    }
+  }
+});
 
-// console.log('\u001B[1F\u001B[G\u001B[2K'+'1111');
+var textBox = blessed.box({
+    top: "center",
+    left: "center",
+    width: 33.5,
+    height: 18,
+    content: eval(genLogo()),
+})
+var box = blessed.box({
+  top: "center",
+  left: "center",
+  width: "100%",
+  height: "100%",
+  content: "",
+  tags: true,
+  border: {
+    type: "line"
+  },
+  style: {
+    fg: "red",
+    bg: "black",
+    border: {
+      fg: "#f0f0f0"
+    },
+    hover: {
+      bg: "green"
+    }
+  }
+});
 
-// console.log('\u001B[G'+'2222');
-// console.log('\u001B[2K'+'3333');
-// console.log('\u001B[1F\u001B[G\u001B[2K'+'4444');
-// console.log('\u001B[1F\u001B[G\u001B[2K'+'5555');
-// console.log('\u001B[1F\u001B[G\u001B[2K'+'6666');
-// T.forEach(function(item,index){
-//   setTimeout(function(){
-//     console.log(item);
-//   },1000*index+100);
-// });
-// ansi.cursor.show();
+screen.key(["escape", "q", "C-c"], function(ch, key) {
+  return process.exit(0);
+});
 
-// setTimeout(function(){
-//     console.log('1');
-//   },1000);
+screen.append(box);
+screen.append(logoBox);
+screen.render();
