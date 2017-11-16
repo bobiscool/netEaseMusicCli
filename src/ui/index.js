@@ -3,7 +3,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-15 17:18:13 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-16 10:39:45
+ * @Last Modified time: 2017-11-16 11:21:43
  * 
  */
 
@@ -64,7 +64,7 @@ console.log(title)
 }
 
 
-// genLogo();
+genLogo();
 
 const welcome = chalkAnimation.rainbow('Welcome to NetEaseCloudMusic!'); // Animation starts
 const loading = chalkAnimation.neon('Loading...'); // Animation starts
@@ -89,11 +89,11 @@ var T = ['\u001B[1F\u001B[G\u001B[2K'+'1211',
 // console.log('\u001B[1F\u001B[G\u001B[2K'+'4444');
 // console.log('\u001B[1F\u001B[G\u001B[2K'+'5555');
 // console.log('\u001B[1F\u001B[G\u001B[2K'+'6666');
-T.forEach(function(item,index){
-  setTimeout(function(){
-    console.log(item);
-  },1000*index+100);
-});
+// T.forEach(function(item,index){
+//   setTimeout(function(){
+//     console.log(item);
+//   },1000*index+100);
+// });
 // ansi.cursor.show();
 
 // setTimeout(function(){

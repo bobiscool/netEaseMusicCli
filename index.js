@@ -1,1 +1,2 @@
-require('./src/ui/index');
+// require('./src/ui/index');
+require('./test/blessed');
