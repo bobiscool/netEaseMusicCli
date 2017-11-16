@@ -3,15 +3,14 @@ var chalk = require('chalk');
 var screen = blessed.screen({
    smartCSR:true
 });
-var logo = `
-..@@@@@@@@@@@@@@@@@@@@@@@@@....  
+var logo = `  
 ..@@@@@@@@@@@@@@@@@@@@@@@@@@@.. 
 .@@@@@@@@@@@@@@@@.....@@@@@@@@. 
 @@@@@@@@@@@...... .....@@@@@@@@ 
 @@@@@@@@......@....@@@@@@@@@@@@ 
 @@@@@@@....@@@.........@@@@@@@@ 
 @@@@@@...@@@.............@@@@@@ 
-@@@@@...@@@....@@...@@...=@@@@@ 
+@@@@@...@@@....@@...@@....@@@@@ 
 @@@@@...@@@....@@....@@...@@@@@ 
 @@@@@....@@@.......@@@@...@@@@@ 
 @@@@@@...@@@@@..@@@@@@...@@@@@@ 
@@ -49,22 +48,16 @@ function addChalk(text) {
 
 screen.title = "NetEase";
 
-var box = blessed.box({
+var logoBox = blessed.box({
    top:'center',
    left:"center",
-   width:'50%',
-   height:'50%',
+   width:'280',
+   height:'480',
    content:eval(genLogo()),
    tags:true,
-   border:{
-       type:'line'
-   },
    style:{
        fg:'red',
        bg:'black',
-       border:{
-           fg:'#f0f0f0'
-       },
        hover:{
            bg:'green'
        }
@@ -72,21 +65,38 @@ var box = blessed.box({
 });
 
 
-var icon = blessed.image({
-   parent:box,
-   top: 0,
-   left: 0,
-   type: 'overlay',
-   width:'shrink',
-   height:'shrink',
-   file:'./1.png',
-   search:false
-});
+var box = blessed.box({
+    top:'center',
+    left:"center",
+    width:'100%',
+    height:'100%',
+    content:'',
+    tags:true,
+    border:{
+        type:'line'
+    },
+    style:{
+        fg:'red',
+        bg:'black',
+        border:{
+            fg:'#f0f0f0'
+        },
+        hover:{
+            bg:'green'
+        }
+    }
+ });
+
+
+
+
+
+
 
 screen.key(['escape', 'q', 'C-c'], function(ch, key) {
     return process.exit(0);
   });
-  
-screen.append(box);
 
+screen.append(box);
+screen.append(logoBox);
 screen.render();
