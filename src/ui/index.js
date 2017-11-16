@@ -1,50 +1,11 @@
 var blessed = require("blessed");
 var chalk = require("chalk");
+var logo = require('./logo')
 var screen = blessed.screen({
   smartCSR: true
 });
-var logo = `  
-..@@@@@@@@@@@@@@@@@@@@@@@@@@@.. 
-.@@@@@@@@@@@@@@@@.....@@@@@@@@. 
-@@@@@@@@@@@...... .....@@@@@@@@ 
-@@@@@@@@......@....@@@@@@@@@@@@ 
-@@@@@@@....@@@.........@@@@@@@@ 
-@@@@@@...@@@.............@@@@@@ 
-@@@@@...@@@....@@...@@....@@@@@ 
-@@@@@...@@@....@@....@@...@@@@@ 
-@@@@@....@@@.......@@@@...@@@@@ 
-@@@@@@...@@@@@..@@@@@@...@@@@@@ 
-@@@@@@@.....@@@@@@@@.....@@@@@@ 
-@@@@@@@@@..............@@@@@@@@ 
-.@@@@@@@@@@@@......@@@@@@@@@@@@ 
-...@@@@@@@@@@@@@@@@@@@@@@@@@@.. `;
 
-function addChalk(text) {
-  let temText = "";
-  let textNotat = "";
-  for (var i in text) {
-    if (text[i] != "@") {
-      temText += `${i == 0 ? "" : "+"}chalk.white('${text[i]}')`;
-    }
-    if (text[i] == "@") {
-      temText += `${i == 0 ? "" : "+"}'@'`;
-    }
-  }
-  temText = "chalk.red(" + temText + ")";
-  return temText;
-}
 
-function genLogo() {
-  var logoTextArray = logo.split("\n");
-  var logoTextArrayWrapChalk = [];
-  logoTextArray.forEach(function(item, index) {
-    logoTextArrayWrapChalk.push(addChalk(item));
-  });
-  //   console.log(title)
-  return logoTextArrayWrapChalk.join("+'\\n'+");
-}
-
-// console.log(eval(genLogo()));
 
 screen.title = "NetEase";
 
@@ -73,7 +34,7 @@ var textBox = blessed.box({
     left: "center",
     width: 33.5,
     height: 18,
-    content: eval(genLogo()),
+    content: eval(logo),
 })
 var box = blessed.box({
   top: "center",
