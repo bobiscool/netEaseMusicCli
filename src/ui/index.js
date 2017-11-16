@@ -4,11 +4,12 @@ var chalk = require("chalk");
 var logo = require("./logo");
 var screen = blessed.screen({
   smartCSR: true,
-  fullUnicode: true
+  fullUnicode: true// chinese
 });
 
 screen.title = "NetEase";
 
+// logo
 var logoBox = blessed.box({
   top: "center",
   left: "center",
@@ -29,7 +30,7 @@ var logoBox = blessed.box({
   }
 });
 
-// chalk.red(`网易${chalk.white('云')}音乐`)
+//title
 var textBox = blessed.box({
   top: "85%",
   left: "center",
@@ -43,7 +44,7 @@ var textBox = blessed.box({
   }
 });
 
-// console.log(chalk.red(`网易${chalk.white('云')}音乐`))
+// background box
 var box = blessed.box({
   top: "center",
   left: "center",
