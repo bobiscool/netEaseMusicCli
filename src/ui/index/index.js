@@ -2,47 +2,13 @@
 var blessed = require("blessed");
 var chalk = require("chalk");
 var logo = require("./logo");
+var startHome = require('../home/home');
 var screen = blessed.screen({
   smartCSR: true,
   fullUnicode: true// chinese
 });
 
 screen.title = "NetEase";
-
-// logo
-var logoBox = blessed.box({
-  top: "center",
-  left: "center",
-  width: 33.5,
-  height: 18,
-  content: eval(logo),
-  tags: true,
-  style: {
-    fg: "red",
-    bg: "black",
-
-    border: {
-      fg: "#f0f0f0"
-    },
-    hover: {
-      bg: "green"
-    }
-  }
-});
-
-//title
-var textBox = blessed.box({
-  top: "85%",
-  left: "center",
-  width: 25,
-  height: 1,
-  content: `${chalk.red.bold(`网易${chalk.white("云")}音乐`)}${chalk.whiteBright(
-    "--音乐的力量"
-  )}`,
-  style: {
-    bg: "black"
-  }
-});
 
 // background box
 var box = blessed.box({
@@ -60,12 +26,45 @@ var box = blessed.box({
     bg: "black",
     border: {
       fg: "#f0f0f0"
-    },
-    hover: {
-      bg: "green"
     }
   }
 });
+
+// logo
+var logoBox = blessed.box({
+  parent:box,
+  top: "center",
+  left: "center",
+  width: 33.5,
+  height: 18,
+  content: eval(logo),
+  tags: true,
+  style: {
+    fg: "red",
+    bg: "black",
+
+    border: {
+      fg: "#f0f0f0"
+    }
+  }
+});
+
+//title
+var textBox = blessed.box({
+  parent:box,
+  top: "85%",
+  left: "center",
+  width: 25,
+  height: 1,
+  content: `${chalk.red.bold(`网易${chalk.white("云")}音乐`)}${chalk.whiteBright(
+    "--音乐的力量"
+  )}`,
+  style: {
+    bg: "black"
+  }
+});
+
+
 
 
 screen.key(["escape", "q", "C-c"], function(ch, key) {
@@ -84,6 +83,7 @@ screen.append(textBox);
 setTimeout(function(){
     logoBox.hide();
     textBox.hide();
+    startHome(screen);
     screen.render();
 },2000)
 
