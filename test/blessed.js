@@ -45,7 +45,7 @@ function addChalk(text) {
    return logoTextArrayWrapChalk.join("+'\\n'+");
   }
   
-console.log(eval(genLogo()));
+// console.log(eval(genLogo()));
 
 screen.title = "NetEase";
 
