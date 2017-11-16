@@ -82,6 +82,7 @@ screen.append(logoBox);
 screen.append(textBox);
 
 setTimeout(function(){
+    
     logoBox.hide();
     textBox.hide();
     screen.render();
