@@ -1,12 +1,11 @@
+
 var blessed = require("blessed");
 var chalk = require("chalk");
-var logo = require('./logo')
+var logo = require("./logo");
 var screen = blessed.screen({
   smartCSR: true,
   fullUnicode: true
 });
-
-
 
 screen.title = "NetEase";
 
@@ -32,12 +31,17 @@ var logoBox = blessed.box({
 
 // chalk.red(`网易${chalk.white('云')}音乐`)
 var textBox = blessed.box({
-    top: "center",
-    left: "center",
-    width: 25,
-    height: 1,
-    content:`${chalk.red.bold(`网易${chalk.white('云')}音乐`)}${chalk.whiteBright('--音乐的力量')}`,
-})
+  top: "85%",
+  left: "center",
+  width: 25,
+  height: 1,
+  content: `${chalk.red.bold(`网易${chalk.white("云")}音乐`)}${chalk.whiteBright(
+    "--音乐的力量"
+  )}`,
+  style: {
+    bg: "black"
+  }
+});
 
 // console.log(chalk.red(`网易${chalk.white('云')}音乐`))
 var box = blessed.box({
@@ -66,7 +70,19 @@ screen.key(["escape", "q", "C-c"], function(ch, key) {
   return process.exit(0);
 });
 
+
+
+
+
+
 screen.append(box);
 screen.append(logoBox);
 screen.append(textBox);
+
+setTimeout(function(){
+    logoBox.hide();
+    textBox.hide();
+    screen.render();
+},2000)
+
 screen.render();
