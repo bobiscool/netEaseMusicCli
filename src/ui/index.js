@@ -2,7 +2,8 @@ var blessed = require("blessed");
 var chalk = require("chalk");
 var logo = require('./logo')
 var screen = blessed.screen({
-  smartCSR: true
+  smartCSR: true,
+  fullUnicode: true
 });
 
 
@@ -14,7 +15,7 @@ var logoBox = blessed.box({
   left: "center",
   width: 33.5,
   height: 18,
-  content: eval(genLogo()),
+  content: eval(logo),
   tags: true,
   style: {
     fg: "red",
@@ -29,13 +30,16 @@ var logoBox = blessed.box({
   }
 });
 
+// chalk.red(`网易${chalk.white('云')}音乐`)
 var textBox = blessed.box({
     top: "center",
     left: "center",
-    width: 33.5,
-    height: 18,
-    content: eval(logo),
+    width: 25,
+    height: 1,
+    content:`${chalk.red.bold(`网易${chalk.white('云')}音乐`)}${chalk.whiteBright('--音乐的力量')}`,
 })
+
+// console.log(chalk.red(`网易${chalk.white('云')}音乐`))
 var box = blessed.box({
   top: "center",
   left: "center",
@@ -64,4 +68,5 @@ screen.key(["escape", "q", "C-c"], function(ch, key) {
 
 screen.append(box);
 screen.append(logoBox);
+screen.append(textBox);
 screen.render();
