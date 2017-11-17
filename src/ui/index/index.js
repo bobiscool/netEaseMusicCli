@@ -26,7 +26,7 @@ var box = blessed.box({
     fg: "red",
     bg: "black",
     border: {
-      fg: "#f0f0f0"
+      fg: "#black"
     }
   }
 });

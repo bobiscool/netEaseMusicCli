@@ -2,7 +2,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 13:33:54 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-17 15:41:50
+ * @Last Modified time: 2017-11-17 16:18:26
  * home tab 
  */
 const blessed = require("blessed");
@@ -15,9 +15,9 @@ function Tab(a, b, c, bus, homeBox, screen) {
   this.bus = bus;
   this.aBox = blessed.box({
     parent: homeBox,
-    top: "5%",
-    left: "26%",
-    width: "17%",
+    top: "0",
+    left: "0%",
+    width: "33%",
     height: 3,
     content: chalk.white(a),
     style: {
@@ -29,9 +29,9 @@ function Tab(a, b, c, bus, homeBox, screen) {
   });
   this.bBox = blessed.box({
     parent: homeBox,
-    top: "5%",
-    left: "42%",
-    width: "17%",
+    top: "0",
+    left: "33%",
+    width: "33%",
     height: 3,
     content: chalk.rgb(123, 45, 67)(b),
     style: {
@@ -43,9 +43,9 @@ function Tab(a, b, c, bus, homeBox, screen) {
   });
   this.cBox = blessed.box({
     parent: homeBox,
-    top: "5%",
-    left: "58.5%",
-    width: "17%",
+    top: "0",
+    left: "66%",
+    width: "34%",
     height: 3,
     content: chalk.rgb(123, 45, 67)(c),
     style: {
@@ -57,9 +57,6 @@ function Tab(a, b, c, bus, homeBox, screen) {
   });
   var self = this;
 
-  screen.append(this.aBox);
-  screen.append(this.bBox);
-  screen.append(this.cBox);
   
   this.aBox.on("click", function() {
     self.nowTab = 0;  

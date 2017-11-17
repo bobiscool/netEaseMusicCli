@@ -2,7 +2,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 14:25:07 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-17 15:48:55
+ * @Last Modified time: 2017-11-17 16:15:34
  * add player 
  */
 
@@ -12,11 +12,12 @@ var chalk = require("chalk");
 function Player(screen,bus,homeBox){
     var self = this;
     this.screen = screen;
+    this.playing = false;
     this.basebox = blessed.box({
       parent:homeBox,
-      bottom:1,
+      bottom:0,
       left:'center',
-      width:"50%",
+      width:"100%",
       height:3,
       style: {
         bg: "red"
@@ -25,21 +26,47 @@ function Player(screen,bus,homeBox){
     this.playBtn = blessed.box({
         parent:self.basebox,
         bottom:1,
-        left:'center',
+        left:'0',
         align:'center',
         valign:"middle",
-        height:3,
-        width:8,
-        content:chalk.bold.white("play")+chalk.blue("ing"),
+        height:1,
+        width:9,
+        content:chalk.bold.white("play")+chalk.yellow("ing"),
         style:{
             bg: "red"            
         }
       });
+    
+      this.nextBtn = blessed.box({
+        parent:self.basebox,
+        bottom:1,
+        left:9,
+        align:'center',
+        valign:"middle",
+        height:1,
+        width:8,
+        content:chalk.bold.white("next"),
+        style:{
+            bg: "red"            
+        }
+      }); 
       
-      
-    this.screen.append(this.basebox);
-    this.screen.append(this.playBtn);
+    this.playBtn.on('click',function(){
+       self.togglePlay();
+    });
 } 
 
+
+Player.prototype = {
+    togglePlay(){
+        if(this.playing){
+            this.playBtn.setContent(chalk.bold.white("paus")+chalk.yellow("ed"))
+        }else{
+            this.playBtn.setContent(chalk.bold.white("play")+chalk.yellow("ing"))            
+        }
+        this.playing = !this.playing;
+        this.screen.render();
+    }
+}
 
 module.exports = Player;
