@@ -5,7 +5,7 @@ import { Z_HUFFMAN_ONLY } from "zlib";
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 11:12:44 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-17 11:31:59
+ * @Last Modified time: 2017-11-17 11:39:15
  */
 
 
@@ -58,6 +58,15 @@ import { Z_HUFFMAN_ONLY } from "zlib";
         }
      },
      delete:function(name){
-         
+         let deleteLoc;
+         this.busList.forEach((element,index) =>{
+             if(element.name == name){
+                 deleteLoc = index;
+             }
+         })
+
+         if(deleteLoc){
+             this.busList.splice(deleteLoc,1);
+         }
      }
  }
