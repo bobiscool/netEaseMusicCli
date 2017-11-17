@@ -3,13 +3,13 @@ var blessed = require("blessed");
 var chalk = require("chalk");
 var logo = require("./logo");
 var startHome = require('../home/home');
+var Bus = require('../../tool/eventBus');
 var screen = blessed.screen({
   smartCSR: true,
   fullUnicode: true// chinese
 });
-
 screen.title = "NetEase";
-
+var bus = new Bus;
 // background box
 var box = blessed.box({
   top: "center",

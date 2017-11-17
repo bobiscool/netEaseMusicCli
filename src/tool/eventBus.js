@@ -1,11 +1,8 @@
-import { execFile } from "child_process";
-import { Z_HUFFMAN_ONLY } from "zlib";
-
 /*
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 11:12:44 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-17 11:39:15
+ * @Last Modified time: 2017-11-17 13:23:29
  */
 
 
@@ -70,3 +67,5 @@ import { Z_HUFFMAN_ONLY } from "zlib";
          }
      }
  }
+
+ module.exports = Bus;
