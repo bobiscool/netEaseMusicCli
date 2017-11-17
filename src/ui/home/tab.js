@@ -2,22 +2,24 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 13:33:54 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-17 16:18:26
+ * @Last Modified time: 2017-11-17 16:26:01
  * home tab 
  */
 const blessed = require("blessed");
 const chalk = require("chalk");
 function Tab(a, b, c, bus, homeBox, screen) {
   var screen = screen;
+  var self =this;
   this.screen = screen;
   this.tabText = [a, b, c];
   this.nowTab = 0;
   this.bus = bus;
+  this.color = [0,0,0];
   this.aBox = blessed.box({
     parent: homeBox,
     top: "0",
     left: "0%",
-    width: "33%",
+    width: "34%",
     height: 3,
     content: chalk.white(a),
     style: {
@@ -30,10 +32,10 @@ function Tab(a, b, c, bus, homeBox, screen) {
   this.bBox = blessed.box({
     parent: homeBox,
     top: "0",
-    left: "33%",
-    width: "33%",
+    left: "34%",
+    width: "35%",
     height: 3,
-    content: chalk.rgb(123, 45, 67)(b),
+    content: chalk.rgb(self.color[0], self.color[1], self.color[2])(b),
     style: {
       bg: "red",
       fg: "white"
@@ -44,10 +46,10 @@ function Tab(a, b, c, bus, homeBox, screen) {
   this.cBox = blessed.box({
     parent: homeBox,
     top: "0",
-    left: "66%",
+    right: 0,
     width: "34%",
     height: 3,
-    content: chalk.rgb(123, 45, 67)(c),
+    content: chalk.rgb(self.color[0], self.color[1], self.color[2])(c),
     style: {
       bg: "red",
       fg: "white"
@@ -94,20 +96,21 @@ function Tab(a, b, c, bus, homeBox, screen) {
 
 Tab.prototype = {
   changeTab() {
+    var self = this;  
     this.aBox.setContent(
       this.nowTab == 0
         ? chalk.white(this.tabText[0])
-        : chalk.rgb(123, 45, 67)(this.tabText[0])
+        : chalk.rgb(self.color[0], self.color[1], self.color[2])(this.tabText[0])
     );
     this.bBox.setContent(
         this.nowTab == 1
         ? chalk.white(this.tabText[1])
-        : chalk.rgb(123, 45, 67)(this.tabText[1])
+        : chalk.rgb(self.color[0], self.color[1], self.color[2])(this.tabText[1])
     );
     this.cBox.setContent(
         this.nowTab == 2
         ? chalk.white(this.tabText[2])
-        : chalk.rgb(123, 45, 67)(this.tabText[2])
+        : chalk.rgb(self.color[0], self.color[1], self.color[2])(this.tabText[2])
     );
     this.screen.render();
   }

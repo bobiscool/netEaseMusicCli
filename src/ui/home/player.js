@@ -2,7 +2,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 14:25:07 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-17 16:15:34
+ * @Last Modified time: 2017-11-17 17:05:20
  * add player 
  */
 
@@ -46,11 +46,27 @@ function Player(screen,bus,homeBox){
         height:1,
         width:8,
         content:chalk.bold.white("next"),
+        border:{
+
+        },
         style:{
             bg: "red"            
         }
       }); 
       
+      this.playArea =  blessed.box({
+        parent:self.basebox,
+        bottom:2,
+        left:19,
+        align:'center',
+        valign:"middle",
+        height:1,
+        width:8,
+        content:chalk.bold.white("next"),
+        style:{
+            bg: "red"            
+        }
+      }); 
     this.playBtn.on('click',function(){
        self.togglePlay();
     });

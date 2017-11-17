@@ -1,13 +1,4 @@
-/*
- * @Author: Thunderball.Wu 
- * @Date: 2017-11-15 13:24:16 
- * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-15 14:52:37
- * 参考自
- * https://github.com/darknessomi/musicbox/
- * 参与网易云音乐加解密计算
- */
-
+// 参考 https://github.com/darknessomi/musicbox/wiki/
 'use strict'
 const crypto = require('crypto')
 const bigInt = require('big-integer')
@@ -62,7 +53,6 @@ function rsaEncrypt(text, pubKey, modulus) {
   return zfill(biRet.toString(16), 256)
 }
 
-/*登录时的 加密算法s*/
 function Encrypt(obj) {
   const text = JSON.stringify(obj)
   const secKey = createSecretKey(16)
