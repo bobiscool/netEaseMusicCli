@@ -2,7 +2,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-16 15:49:33 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-16 16:39:38
+ * @Last Modified time: 2017-11-17 11:10:00
  */
 const blessed = require("blessed");
 const chalk = require("chalk");
@@ -48,6 +48,9 @@ function startHome(screen) {
     valign: "middle"
   });
 
+  var tabText = ["我的音乐", "音乐广场", "音乐动态"];
+  var nowTab = 0;
+
   var actiBox = blessed.box({
     parent: homeBox,
     top: "10%",
@@ -69,25 +72,50 @@ function startHome(screen) {
   screen.append(actiBox);
 
   meBox.on("click", function() {
-    meBox.setContent(chalk.white("我的音乐"));
-    sequareBox.setContent(chalk.rgb(123, 45, 67)("音乐广场"));
-    actiBox.setContent(chalk.rgb(123, 45, 67)("音乐动态"));
-    screen.render();
+    changeTab(0);
   });
-
   sequareBox.on("click", function() {
-    sequareBox.setContent(chalk.white("音乐广场"));
-    meBox.setContent(chalk.rgb(123, 45, 67)("我的音乐"));
-    actiBox.setContent(chalk.rgb(123, 45, 67)("音乐动态"));
-    screen.render();
+    changeTab(1);
+  });
+  actiBox.on("click", function() {
+    changeTab(2);
   });
 
-  actiBox.on("click", function() {
-    actiBox.setContent(chalk.white("音乐动态"));
-    sequareBox.setContent(chalk.rgb(123, 45, 67)("音乐广场"));
-    meBox.setContent(chalk.rgb(123, 45, 67)("我的音乐"));
-    screen.render();
+  screen.on("keypress", function(ch, key) {
+    if (key.name == "left") {
+      if (nowTab >= 1) {
+        nowTab--;
+      } else {
+        nowTab = 0;
+      }
+
+      changeTab(nowTab);
+    }
+
+    if (key.name == "right") {
+        if (nowTab <= 1) {
+          nowTab++;
+        } else {
+          nowTab = 2;
+        }
+  
+        changeTab(nowTab);
+      }
   });
+
+  function changeTab(who) {
+    nowTab = who;
+    meBox.setContent(
+      who == 0 ? chalk.white(tabText[0]) : chalk.rgb(123, 45, 67)(tabText[0])
+    );
+    sequareBox.setContent(
+      who == 1 ? chalk.white(tabText[1]) : chalk.rgb(123, 45, 67)(tabText[1])
+    );
+    actiBox.setContent(
+      who == 2 ? chalk.white(tabText[2]) : chalk.rgb(123, 45, 67)(tabText[2])
+    );
+    screen.render();
+  }
 }
 
 module.exports = startHome;
