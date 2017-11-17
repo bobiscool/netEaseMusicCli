@@ -2,12 +2,13 @@
 var blessed = require("blessed");
 var chalk = require("chalk");
 var logo = require("./logo");
-var startHome = require('../home/home');
+var Home = require('../home/home');
 var Bus = require('../../tool/eventBus');
 var screen = blessed.screen({
   smartCSR: true,
   fullUnicode: true// chinese
 });
+var Home;
 screen.title = "NetEase";
 var bus = new Bus();
 // background box
@@ -65,8 +66,6 @@ var textBox = blessed.box({
 });
 
 
-
-
 screen.key(["escape", "q", "C-c"], function(ch, key) {
   return process.exit(0);
 });
@@ -83,7 +82,8 @@ screen.append(textBox);
 setTimeout(function(){
     logoBox.hide();
     textBox.hide();
-    startHome(screen,bus);
+    Home = new Home(screen,bus);
+    Home.init(screen);
     screen.render();
 },2000)
 
