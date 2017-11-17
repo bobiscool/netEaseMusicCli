@@ -9,7 +9,7 @@ var screen = blessed.screen({
   fullUnicode: true// chinese
 });
 screen.title = "NetEase";
-var bus = new Bus;
+var bus = new Bus();
 // background box
 var box = blessed.box({
   top: "center",
@@ -83,8 +83,9 @@ screen.append(textBox);
 setTimeout(function(){
     logoBox.hide();
     textBox.hide();
-    startHome(screen);
+    startHome(screen,bus);
     screen.render();
 },2000)
+
 
 screen.render();

@@ -2,12 +2,18 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-16 15:49:33 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-17 11:10:00
+ * @Last Modified time: 2017-11-17 13:31:16
  */
 const blessed = require("blessed");
 const chalk = require("chalk");
+const player = require('./player')
 
-function startHome(screen) {
+function startHome(screen,bus) {
+  function Home(){
+     this.topTab=[];
+     this.bus = bus;
+     this.player=new Player()
+  }  
   var homeBox = blessed.box({
     top: "10%",
     left: "center",
@@ -116,6 +122,8 @@ function startHome(screen) {
     );
     screen.render();
   }
+
+
 }
 
 module.exports = startHome;
