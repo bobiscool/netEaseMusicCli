@@ -2,11 +2,15 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 13:33:54 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-17 16:26:01
+ * @Last Modified time: 2017-11-18 18:43:44
  * home tab 
  */
 const blessed = require("blessed");
 const chalk = require("chalk");
+const red = "#B92500";
+const white = "#ffffff"
+const chalkWhite = [0,0,0];
+const chalkRed = [185,37,0];
 function Tab(a, b, c, bus, homeBox, screen) {
   var screen = screen;
   var self =this;
@@ -23,8 +27,8 @@ function Tab(a, b, c, bus, homeBox, screen) {
     height: 3,
     content: chalk.white(a),
     style: {
-      bg: "red",
-      fg: "white"
+      bg: red,
+      fg: white
     },
     align: "center",
     valign: "middle"
@@ -37,8 +41,8 @@ function Tab(a, b, c, bus, homeBox, screen) {
     height: 3,
     content: chalk.rgb(self.color[0], self.color[1], self.color[2])(b),
     style: {
-      bg: "red",
-      fg: "white"
+      bg: red,
+      fg: white
     },
     align: "center",
     valign: "middle"
@@ -51,8 +55,8 @@ function Tab(a, b, c, bus, homeBox, screen) {
     height: 3,
     content: chalk.rgb(self.color[0], self.color[1], self.color[2])(c),
     style: {
-      bg: "red",
-      fg: "white"
+      bg: red,
+      fg: white
     },
     align: "center",
     valign: "middle"

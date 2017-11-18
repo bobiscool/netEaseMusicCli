@@ -2,13 +2,18 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 14:25:07 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-17 17:05:20
+ * @Last Modified time: 2017-11-18 18:44:17
  * add player 
  */
 
 
 var blessed = require("blessed");
 var chalk = require("chalk");
+const red = "#B92500";
+const white = "#ffffff"
+const chalkWhite = [0,0,0];
+const chalkRed = [185,37,0];
+
 function Player(screen,bus,homeBox){
     var self = this;
     this.screen = screen;
@@ -20,20 +25,20 @@ function Player(screen,bus,homeBox){
       width:"100%",
       height:3,
       style: {
-        bg: "red"
+        bg: red
       }
     });
     this.playBtn = blessed.box({
         parent:self.basebox,
         bottom:1,
-        left:'0',
+        left:0,
         align:'center',
         valign:"middle",
         height:1,
         width:9,
         content:chalk.bold.white("play")+chalk.yellow("ing"),
         style:{
-            bg: "red"            
+            bg: red            
         }
       });
     
@@ -47,10 +52,11 @@ function Player(screen,bus,homeBox){
         width:8,
         content:chalk.bold.white("next"),
         border:{
-
+           fg:white
         },
         style:{
-            bg: "red"            
+            bg: "blue",
+
         }
       }); 
       
@@ -64,7 +70,7 @@ function Player(screen,bus,homeBox){
         width:8,
         content:chalk.bold.white("next"),
         style:{
-            bg: "red"            
+            bg: red            
         }
       }); 
     this.playBtn.on('click',function(){

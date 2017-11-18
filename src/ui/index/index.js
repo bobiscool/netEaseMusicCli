@@ -8,6 +8,11 @@ var screen = blessed.screen({
   smartCSR: true,
   fullUnicode: true// chinese
 });
+const red = "#B92500";
+const white = "#ffffff";
+const black = "#000000";
+const chalkWhite = [255,255,255];
+const chalkRed = [185,37,0];
 var Home;
 screen.title = "NetEase";
 var bus = new Bus();
@@ -23,10 +28,10 @@ var box = blessed.box({
     type: "line"
   },
   style: {
-    fg: "red",
-    bg: "black",
+    fg: red,
+    bg: black,
     border: {
-      fg: "#black"
+      fg: black
     }
   }
 });
@@ -41,8 +46,8 @@ var logoBox = blessed.box({
   content: eval(logo),
   tags: true,
   style: {
-    fg: "red",
-    bg: "black",
+    fg: red,
+    bg: black,
 
     border: {
       fg: "#f0f0f0"
@@ -57,7 +62,7 @@ var textBox = blessed.box({
   left: "center",
   width: 25,
   height: 1,
-  content: `${chalk.red.bold(`网易${chalk.white("云")}音乐`)}${chalk.whiteBright(
+  content: `${chalk.rgb(chalkRed[0],chalkRed[1],chalkRed[2]).bold(`网易${chalk.rgb(chalkWhite[0],chalkWhite[1],chalkWhite[2])("云")}音乐`)}${chalk.whiteBright(
     "--音乐的力量"
   )}`,
   style: {
