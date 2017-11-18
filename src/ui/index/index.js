@@ -4,15 +4,16 @@ var chalk = require("chalk");
 var logo = require("./logo");
 var Home = require('../home/home');
 var Bus = require('../../tool/eventBus');
+var { red,white,chalkRed,chalkWhite,black} = require('../../tool/colors');
 var screen = blessed.screen({
   smartCSR: true,
   fullUnicode: true// chinese
 });
-const red = "#B92500";
-const white = "#ffffff";
-const black = "#000000";
-const chalkWhite = [255,255,255];
-const chalkRed = [185,37,0];
+// const red = "#B92500";
+// const white = "#ffffff";
+// const black = "#000000";
+// const chalkWhite = [255,255,255];
+// const chalkRed = [185,37,0];
 var Home;
 screen.title = "NetEase";
 var bus = new Bus();
@@ -62,7 +63,7 @@ var textBox = blessed.box({
   left: "center",
   width: 25,
   height: 1,
-  content: `${chalk.rgb(chalkRed[0],chalkRed[1],chalkRed[2]).bold(`网易${chalk.rgb(chalkWhite[0],chalkWhite[1],chalkWhite[2])("云")}音乐`)}${chalk.whiteBright(
+  content: `${chalk.hex(red).bold(`网易${chalk.hex(white)("云")}音乐`)}${chalk.hex(white)(
     "--音乐的力量"
   )}`,
   style: {

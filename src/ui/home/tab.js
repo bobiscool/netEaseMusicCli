@@ -2,15 +2,12 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 13:33:54 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-18 18:43:44
+ * @Last Modified time: 2017-11-18 19:30:03
  * home tab 
  */
 const blessed = require("blessed");
 const chalk = require("chalk");
-const red = "#B92500";
-const white = "#ffffff"
-const chalkWhite = [0,0,0];
-const chalkRed = [185,37,0];
+const { red,white,chalkRed,chalkWhite,black} = require('../../tool/colors');
 function Tab(a, b, c, bus, homeBox, screen) {
   var screen = screen;
   var self =this;
@@ -18,14 +15,28 @@ function Tab(a, b, c, bus, homeBox, screen) {
   this.tabText = [a, b, c];
   this.nowTab = 0;
   this.bus = bus;
-  this.color = [0,0,0];
+
+  this.bBox = blessed.box({
+    parent: homeBox,
+    top: "0",
+    left: "0%",
+    width: "100%",
+    height: 3,
+    content: chalk.hex(black)(b),
+    style: {
+      bg: red,
+      fg: white
+    },
+    align: "center",
+    valign: "middle"
+  });// 调换顺序 保证填满
   this.aBox = blessed.box({
     parent: homeBox,
     top: "0",
     left: "0%",
     width: "34%",
     height: 3,
-    content: chalk.white(a),
+    content: chalk.hex(white)(a),
     style: {
       bg: red,
       fg: white
@@ -33,27 +44,14 @@ function Tab(a, b, c, bus, homeBox, screen) {
     align: "center",
     valign: "middle"
   });
-  this.bBox = blessed.box({
-    parent: homeBox,
-    top: "0",
-    left: "34%",
-    width: "35%",
-    height: 3,
-    content: chalk.rgb(self.color[0], self.color[1], self.color[2])(b),
-    style: {
-      bg: red,
-      fg: white
-    },
-    align: "center",
-    valign: "middle"
-  });
+
   this.cBox = blessed.box({
     parent: homeBox,
     top: "0",
     right: 0,
     width: "34%",
     height: 3,
-    content: chalk.rgb(self.color[0], self.color[1], self.color[2])(c),
+    content: chalk.hex(black)(c),
     style: {
       bg: red,
       fg: white
@@ -103,18 +101,18 @@ Tab.prototype = {
     var self = this;  
     this.aBox.setContent(
       this.nowTab == 0
-        ? chalk.white(this.tabText[0])
-        : chalk.rgb(self.color[0], self.color[1], self.color[2])(this.tabText[0])
+        ? chalk.hex(white)(this.tabText[0])
+        : chalk.hex(black)(this.tabText[0])
     );
     this.bBox.setContent(
         this.nowTab == 1
-        ? chalk.white(this.tabText[1])
-        : chalk.rgb(self.color[0], self.color[1], self.color[2])(this.tabText[1])
+        ? chalk.hex(white)(this.tabText[1])
+        : chalk.hex(black)(this.tabText[1])
     );
     this.cBox.setContent(
         this.nowTab == 2
-        ? chalk.white(this.tabText[2])
-        : chalk.rgb(self.color[0], self.color[1], self.color[2])(this.tabText[2])
+        ? chalk.hex(white)(this.tabText[2])
+        : chalk.hex(black)(this.tabText[2])
     );
     this.screen.render();
   }

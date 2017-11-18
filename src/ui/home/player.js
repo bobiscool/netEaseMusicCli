@@ -2,17 +2,15 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 14:25:07 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-18 18:44:17
+ * @Last Modified time: 2017-11-18 19:27:25
  * add player 
  */
 
 
 var blessed = require("blessed");
 var chalk = require("chalk");
-const red = "#B92500";
-const white = "#ffffff"
-const chalkWhite = [0,0,0];
-const chalkRed = [185,37,0];
+const { red,white,chalkRed,chalkWhite,black,yellow} = require('../../tool/colors');
+
 
 function Player(screen,bus,homeBox){
     var self = this;
@@ -36,7 +34,7 @@ function Player(screen,bus,homeBox){
         valign:"middle",
         height:1,
         width:9,
-        content:chalk.bold.white("play")+chalk.yellow("ing"),
+        content:chalk.underline(chalk.bold.hex(white)("play")+chalk.hex(yellow)("ing")),
         style:{
             bg: red            
         }
@@ -50,25 +48,21 @@ function Player(screen,bus,homeBox){
         valign:"middle",
         height:1,
         width:8,
-        content:chalk.bold.white("next"),
-        border:{
-           fg:white
-        },
+        content:chalk.bold.underline.hex(white)("next"),
         style:{
-            bg: "blue",
-
+            bg:red
         }
       }); 
       
       this.playArea =  blessed.box({
         parent:self.basebox,
-        bottom:2,
+        bottom:1,
         left:19,
         align:'center',
         valign:"middle",
         height:1,
         width:8,
-        content:chalk.bold.white("next"),
+        content:chalk.bold.hex(white)("没有你"),
         style:{
             bg: red            
         }
@@ -82,9 +76,9 @@ function Player(screen,bus,homeBox){
 Player.prototype = {
     togglePlay(){
         if(this.playing){
-            this.playBtn.setContent(chalk.bold.white("paus")+chalk.yellow("ed"))
+            this.playBtn.setContent(chalk.underline(chalk.bold.hex(white)("paus")+chalk.hex(yellow)("ed")))
         }else{
-            this.playBtn.setContent(chalk.bold.white("play")+chalk.yellow("ing"))            
+            this.playBtn.setContent(chalk.underline(chalk.bold.hex(white)("play")+chalk.hex(yellow)("ing")))            
         }
         this.playing = !this.playing;
         this.screen.render();
