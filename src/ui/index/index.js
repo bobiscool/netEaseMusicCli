@@ -76,38 +76,9 @@ screen.key(["escape", "q", "C-c"], function(ch, key) {
   return process.exit(0);
 });
 
-
-
-
-
-// var logger = blessed.log({
-//   parent: screen,
-//   top: '0',
-//   left: '0',
-//   width: '25%',
-//   height: '100%',
-//   border: 'line',
-//   tags: true,
-//   keys: true,
-//   vi: true,
-//   mouse: true,
-//   scrollback: 100,
-//   scrollbar: {
-//     ch: ' ',
-//     track: {
-//       bg: 'yellow'
-//     },
-//     style: {
-//       inverse: true
-//     }
-//   }
-// });
-
-
 screen.append(box);
 screen.append(logoBox);
 screen.append(textBox);
-screen.append(logger);
 
 setTimeout(function(){
     logoBox.hide();
