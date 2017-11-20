@@ -2,7 +2,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 13:33:54 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-18 19:30:03
+ * @Last Modified time: 2017-11-20 11:18:17
  * home tab 
  */
 const blessed = require("blessed");
@@ -99,6 +99,7 @@ function Tab(a, b, c, bus, homeBox, screen) {
 Tab.prototype = {
   changeTab() {
     var self = this;  
+    self.bus.dispatch('changeList','no',this.nowTab);
     this.aBox.setContent(
       this.nowTab == 0
         ? chalk.hex(white)(this.tabText[0])

@@ -2,9 +2,9 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-16 14:15:56 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-18 19:08:13
+ * @Last Modified time: 2017-11-20 10:52:32
  */
-const { red,white,chalkRed,chalkWhite,black} = require('../../tool/colors');
+const { red,white,chalkRed,chalkWhite,black,deepRed } = require('../../tool/colors');
 var logo = `  
 ..@@@@@@@@@@@@@@@@@@@@@@@@@@@.. 
 .@@@@@@@@@@@@@@@@.....@@@@@@@@. 
@@ -33,7 +33,7 @@ function addChalk(text) {
         temText += `${i == 0 ? "" : "+"}'@'`;
       }
     }
-    temText = "chalk.hex(red)(" + temText + ")";
+    temText = "chalk.hex(deepRed)(" + temText + ")";
     return temText;
   }
   

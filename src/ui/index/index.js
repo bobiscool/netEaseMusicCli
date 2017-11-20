@@ -4,10 +4,11 @@ var chalk = require("chalk");
 var logo = require("./logo");
 var Home = require('../home/home');
 var Bus = require('../../tool/eventBus');
-var { red,white,chalkRed,chalkWhite,black} = require('../../tool/colors');
+var { red,white,chalkRed,chalkWhite,black,deepRed} = require('../../tool/colors');
 var screen = blessed.screen({
   smartCSR: true,
-  fullUnicode: true// chinese
+  fullUnicode: true,// chinese,
+  debug:true
 });
 // const red = "#B92500";
 // const white = "#ffffff";
@@ -49,7 +50,6 @@ var logoBox = blessed.box({
   style: {
     fg: red,
     bg: black,
-
     border: {
       fg: "#f0f0f0"
     }
@@ -80,10 +80,34 @@ screen.key(["escape", "q", "C-c"], function(ch, key) {
 
 
 
+// var logger = blessed.log({
+//   parent: screen,
+//   top: '0',
+//   left: '0',
+//   width: '25%',
+//   height: '100%',
+//   border: 'line',
+//   tags: true,
+//   keys: true,
+//   vi: true,
+//   mouse: true,
+//   scrollback: 100,
+//   scrollbar: {
+//     ch: ' ',
+//     track: {
+//       bg: 'yellow'
+//     },
+//     style: {
+//       inverse: true
+//     }
+//   }
+// });
+
 
 screen.append(box);
 screen.append(logoBox);
 screen.append(textBox);
+screen.append(logger);
 
 setTimeout(function(){
     logoBox.hide();
@@ -92,6 +116,5 @@ setTimeout(function(){
     Home.init(screen);
     screen.render();
 },2000)
-
 
 screen.render();
