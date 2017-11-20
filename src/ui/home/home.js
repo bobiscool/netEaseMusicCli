@@ -2,7 +2,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-16 15:49:33 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-20 11:21:24
+ * @Last Modified time: 2017-11-20 11:31:26
  */
 const blessed = require("blessed");
 const chalk = require("chalk");
@@ -15,7 +15,7 @@ function Home(screen, bus) {
   this.bus = bus;
   this.home = blessed.box({
     top: "5%",
-    left: "30%",
+    left: "center",
     width: "50%",
     height: "90%",
     style: {

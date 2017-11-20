@@ -2,7 +2,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 17:57:26 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-20 11:25:14
+ * @Last Modified time: 2017-11-20 11:34:27
  * 主要功能区域
  */
 
@@ -48,8 +48,10 @@ function FuncArea(screen,bus,home){
 }
 
 FuncArea.prototype = {
-    changeList(type){
-       console.log(type);
+    changeList(whitch){
+        if(whitch.type = "tab"){
+            //no api
+        }
     }
 }
 
