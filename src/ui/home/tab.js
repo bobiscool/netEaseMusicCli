@@ -2,7 +2,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 13:33:54 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-20 11:32:59
+ * @Last Modified time: 2017-11-20 18:54:26
  * home tab 
  */
 const blessed = require("blessed");
@@ -82,6 +82,8 @@ function Tab(a, b, c, bus, homeBox, screen) {
       } else {
         self.nowTab = 0;
       }
+    self.changeTab();
+    
     }
 
     if (key.name == "right") {
@@ -90,9 +92,12 @@ function Tab(a, b, c, bus, homeBox, screen) {
       } else {
         self.nowTab = 2;
       }
-
+      self.changeTab();
+      
     }
-    self.changeTab();
+    // self.changeTab();
+
+    return false;
   });
 }
 

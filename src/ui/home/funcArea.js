@@ -2,14 +2,14 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 17:57:26 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-20 11:34:27
+ * @Last Modified time: 2017-11-20 19:11:27
  * 主要功能区域
  */
 
 const blessed = require("blessed");
 const chalk = require("chalk");
 const { red,white,chalkRed,chalkWhite,black,yellow,deepRed,green} = require('../../tool/colors');
-
+const { tabList } = require('../../tool/listLib');
 function FuncArea(screen,bus,home){
   var self =this;
   this.screen = screen;
@@ -31,8 +31,9 @@ function FuncArea(screen,bus,home){
      vi:true,
      left:2,
      top:2,
+     height:"50%",
      mouse:true,
-     items:['我的收藏','最近播放'],
+     items:tabList[0],
      style:{
          bg:white,
          fg:black,
@@ -41,7 +42,8 @@ function FuncArea(screen,bus,home){
             fg:deepRed,
             bg:white
          }
-     }
+     },
+     
   });
 
   this.bus.add('changeList',this,this.changeList);
@@ -51,6 +53,10 @@ FuncArea.prototype = {
     changeList(whitch){
         if(whitch.type = "tab"){
             //no api
+            this.list.clearItems();
+            this.list.setItems(tabList[whitch.num]);
+            this.list.focus();
+            this.screen.render();  
         }
     }
 }
