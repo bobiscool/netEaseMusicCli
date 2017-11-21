@@ -2,7 +2,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 14:25:07 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-21 10:53:48
+ * @Last Modified time: 2017-11-21 10:56:34
  * add player 
  */
 
@@ -29,7 +29,7 @@ function Player(screen,bus,homeBox){
     this.playBtn = blessed.list({
         parent:self.basebox,
         bottom:1,
-        left:0,
+        left:"center",
         align:'center',
         valign:"middle",
         height:1,
@@ -43,7 +43,7 @@ function Player(screen,bus,homeBox){
       this.nextBtn = blessed.box({
         parent:self.basebox,
         bottom:1,
-        left:9,
+        left:0,
         align:'center',
         valign:"middle",
         height:1,
@@ -57,12 +57,12 @@ function Player(screen,bus,homeBox){
       this.likeIt = blessed.box({
         parent:self.basebox,
         bottom:1,
-        left:19,
+        right:0,
         align:'center',
         valign:"middle",
         height:1,
         width:8,
-        content:chalk.bold.hex(white)("没有你"),
+        content:chalk.bold.hex(white)("like"),
         style:{
             bg: red            
         }
