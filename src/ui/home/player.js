@@ -2,7 +2,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 14:25:07 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-18 19:27:25
+ * @Last Modified time: 2017-11-21 10:53:48
  * add player 
  */
 
@@ -26,7 +26,7 @@ function Player(screen,bus,homeBox){
         bg: red
       }
     });
-    this.playBtn = blessed.box({
+    this.playBtn = blessed.list({
         parent:self.basebox,
         bottom:1,
         left:0,
@@ -54,7 +54,7 @@ function Player(screen,bus,homeBox){
         }
       }); 
       
-      this.playArea =  blessed.box({
+      this.likeIt = blessed.box({
         parent:self.basebox,
         bottom:1,
         left:19,
@@ -66,7 +66,20 @@ function Player(screen,bus,homeBox){
         style:{
             bg: red            
         }
-      }); 
+      });
+    //   this.playArea =  blessed.box({
+    //     parent:self.basebox,
+    //     bottom:1,
+    //     left:19,
+    //     align:'center',
+    //     valign:"middle",
+    //     height:1,
+    //     width:8,
+    //     content:chalk.bold.hex(white)("没有你"),
+    //     style:{
+    //         bg: red            
+    //     }
+    //   }); 
     this.playBtn.on('click',function(){
        self.togglePlay();
     });
