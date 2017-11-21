@@ -2,7 +2,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 14:25:07 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-21 10:56:34
+ * @Last Modified time: 2017-11-21 11:00:00
  * add player 
  */
 
@@ -16,6 +16,7 @@ function Player(screen,bus,homeBox){
     var self = this;
     this.screen = screen;
     this.playing = false;
+    this.like = false;
     this.basebox = blessed.box({
       parent:homeBox,
       bottom:0,
@@ -34,7 +35,7 @@ function Player(screen,bus,homeBox){
         valign:"middle",
         height:1,
         width:9,
-        content:chalk.underline(chalk.bold.hex(white)("play")+chalk.hex(yellow)("ing")),
+        content:chalk.bold.hex(white)("play")+chalk.hex(yellow)("ing"),
         style:{
             bg: red            
         }
@@ -48,7 +49,7 @@ function Player(screen,bus,homeBox){
         valign:"middle",
         height:1,
         width:8,
-        content:chalk.bold.underline.hex(white)("next"),
+        content:chalk.bold.hex(white)("next"),
         style:{
             bg:red
         }
@@ -83,15 +84,28 @@ function Player(screen,bus,homeBox){
     this.playBtn.on('click',function(){
        self.togglePlay();
     });
+
+    this.likeIt.on('click',function(){
+       self.toggleLike();
+    });
 } 
 
 
 Player.prototype = {
     togglePlay(){
         if(this.playing){
-            this.playBtn.setContent(chalk.underline(chalk.bold.hex(white)("paus")+chalk.hex(yellow)("ed")))
+            this.playBtn.setContent(chalk.bold.hex(white)("paus")+chalk.hex(yellow)("ed"))
         }else{
-            this.playBtn.setContent(chalk.underline(chalk.bold.hex(white)("play")+chalk.hex(yellow)("ing")))            
+            this.playBtn.setContent(chalk.bold.hex(white)("play")+chalk.hex(yellow)("ing"))            
+        }
+        this.playing = !this.playing;
+        this.screen.render();
+    },
+    toggleLike(){
+        if(this.like){
+            this.likeIt.setContent(chalk.bold.hex(white)("paus")+chalk.hex(yellow)("ed"))
+        }else{
+            this.likeIt.setContent(chalk.bold.hex(white)("play")+chalk.hex(yellow)("ing"))            
         }
         this.playing = !this.playing;
         this.screen.render();
