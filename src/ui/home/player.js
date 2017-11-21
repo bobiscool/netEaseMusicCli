@@ -2,7 +2,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 14:25:07 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-21 11:00:00
+ * @Last Modified time: 2017-11-21 11:01:37
  * add player 
  */
 
@@ -103,11 +103,11 @@ Player.prototype = {
     },
     toggleLike(){
         if(this.like){
-            this.likeIt.setContent(chalk.bold.hex(white)("paus")+chalk.hex(yellow)("ed"))
+            this.likeIt.setContent(chalk.bold.hex(white)("like"))
         }else{
-            this.likeIt.setContent(chalk.bold.hex(white)("play")+chalk.hex(yellow)("ing"))            
+            this.likeIt.setContent(chalk.bold.hex(white)("lik")+chalk.hex(yellow)("ed"))            
         }
-        this.playing = !this.playing;
+        this.like = !this.like;
         this.screen.render();
     }
 }
