@@ -7,6 +7,10 @@ var player = require('player');
 // a.play();
 var play = new player('./1.mp3');
 var n = 0;
- play.play(function(){
-
+play.on('play',function(data){
+    console.log(data);
+   })
+ play.play(function(data){
+  console.log(data);
 })
+
