@@ -2,7 +2,7 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 17:57:26 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-20 19:11:27
+ * @Last Modified time: 2017-11-23 10:35:27
  * 主要功能区域
  */
 
@@ -10,6 +10,7 @@ const blessed = require("blessed");
 const chalk = require("chalk");
 const { red,white,chalkRed,chalkWhite,black,yellow,deepRed,green} = require('../../tool/colors');
 const { tabList } = require('../../tool/listLib');
+const  MusicBox = require('./musicBox.js')
 function FuncArea(screen,bus,home){
   var self =this;
   this.screen = screen;
@@ -31,7 +32,7 @@ function FuncArea(screen,bus,home){
      vi:true,
      left:2,
      top:2,
-     height:"50%",
+     height:"100%-3",
      mouse:true,
      items:tabList[0],
      style:{
@@ -46,6 +47,7 @@ function FuncArea(screen,bus,home){
      
   });
 
+  this.musicBox = new MusicBox(this.screen,this.bus,this.basebox);
   this.bus.add('changeList',this,this.changeList);
 }
 
