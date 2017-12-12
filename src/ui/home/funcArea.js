@@ -2,13 +2,14 @@
  * @Author: Thunderball.Wu 
  * @Date: 2017-11-17 17:57:26 
  * @Last Modified by: Thunderball.Wu
- * @Last Modified time: 2017-11-23 11:10:30
+ * @Last Modified time: 2017-11-23 11:32:33
  * 主要功能区域
  */
 
 const blessed = require("blessed");
 const chalk = require("chalk");
 const http = require('http');
+const genList = require('./genList')
 const querystring = require('querystring');
 const { red,white,chalkRed,chalkWhite,black,yellow,deepRed,green} = require('../../tool/colors');
 const { tabList } = require('../../tool/listLib');
